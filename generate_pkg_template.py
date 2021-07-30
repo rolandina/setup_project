@@ -1,14 +1,14 @@
-#!/usr/bin/zsh python
+#!/usr/bin/python
 # -- coding: utf-8 --
 
 import os
 import sys
-# print(f"number of parameters: ",len(sys.argv))
-# for i in range(len(sys.argv)):
-#     print(f"param{i}:{sys.argv[i]}")
+print(f"number of parameters: ",len(sys.argv))
+for i in range(len(sys.argv)):
+    print(f"param{i}:{sys.argv[i]}")
 
-# package_name = sys.argv[0]
-package_name = "pkg"
+package_name = sys.argv[1]
+#package_name = "pkg"
 
 #create folders
 folder_names = ['api', 'notebooks', package_name, 'scripts', 'tests']
@@ -20,13 +20,14 @@ file_names = [f'{package_name}/__init__.py',
                 'README.md',
                 '.gitignore',
                 'requirements.txt',
-                'Makefile']
+                'Makefile',
+                'setup.py']
 
 for file in file_names:
     os.system(f"touch {file}")
 
 #prepare requirements.txt
-packages = ["pandas", "numpy", "requests"]
+packages = ["pandas", "numpy", "requests", "setuptools"]
 f = open('requirements.txt', "w")
 for package in packages:
 
@@ -83,6 +84,21 @@ cd dirname
 This project was built on another project/[framework](framework link)
 If you have any questions, please reach me at 
 [License](www.lisense.com)""")
+f.close()
+
+f = open('setup.py', "w")
+
+f.write(f"""
+from setuptools import setup
+
+setup(
+    name="{package_name}",
+    version='0.0.1',
+    packages=["{package_name}"],
+    install_requires={packages},
+    #scripts = ['scripts/generate_plots']
+    )
+""")
 f.close()
 
 
