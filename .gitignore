@@ -1,0 +1,4 @@
+.gitignore
+tools/__pycache__/*
+notebooks/.ipynb_checkpoints
+notebooks/.ipynb_checkpoints/*
