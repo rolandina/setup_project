@@ -1,35 +1,38 @@
-# *NAME OF THE PROJECT/PROGRAM* 
+# *_TOOLS_* 
 
-    ## *What is does*
+## *What is does*
 
-    PROGRAM is a python/c++/c/html/ipython notebook which makes/solve/consists
-    what is a goal
-    input
-    output 
+Package _TOOLS_ is a python package which consists
+from some helpfull scripts and classes which can be use to simplify your life.
 
-    ## General Prerequisites (for running and building)
+*Scripts*:
 
-    * [Anaconda](https://www.anaconda.com/products/individual)
-    * [GitHub](https://github.com)
-    * library-n.version 5
-    * some other library
+[generate_pkg_template](https://github.com/rolandina/tools/blob/master/scripts/generate_pkg_template) - generate empty template of python package
 
-    ## To build
+To run scripts simply write name of the script  you need in the terminal and type ENTER.
 
-    NAME PROGRAM can be build on win/mac/linux
-    Instruction how to build
+## General Prerequisites (for running and building)
 
-    ## To run (for development or testing)
+* git
+* python version 3.6 and higher
+* pip
 
-    ```
-    # Clone this repository 
-    git clone http://github.com/rolandina
-    # Go into the directory
-    cd dirname
-    # python run.py
-    ```
-    ## Contributing
+## To install package _TOOLS_ on your machine you have to have pip 
 
-    This project was built on another project/[framework](framework link)
-    If you have any questions, please reach me at 
-    [License](www.lisense.com)
+```
+# Clone this repository 
+git clone http://github.com/rolandina/tools
+cd tools
+# Install package with pip
+pip install .
+```
+
+To remove package from pip
+```
+pip uninstall tools
+```
+
+
+## Contributing
+
+If you have any questions, please contact me ms.nina.smirnova@gmail.com
