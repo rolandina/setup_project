@@ -1,0 +1,136 @@
+#!/usr/bin/python
+# -- coding: utf-8 --
+
+import os
+import sys
+print(f"number of parameters: ",len(sys.argv))
+for i in range(len(sys.argv)):
+    print(f"param{i}:{sys.argv[i]}")
+
+
+### SET PARAMETERS HERE
+package_name = sys.argv[1]
+packages = ["pandas", "numpy", "requests", "setuptools"]
+
+
+def create_folders():
+    folder_names = ['api', 'notebooks', package_name, 'scripts', 'tests']
+    for folder in folder_names: 
+        os.system(f"mkdir -p {folder}")
+
+def create_files():
+    file_names = [f'{package_name}/__init__.py',
+                    'README.md',
+                    '.gitignore',
+                    'requirements.txt',
+                    'Makefile',
+                    'setup.py']
+
+    for file in file_names:
+        os.system(f"touch {file}")
+
+def create_structure():
+    create_folders()
+    create_files()
+
+def write_in_file(file_name, text):
+    f = open(file_name, "w")
+    f.write(text)
+    f.close()
+
+def create_text_from_list(list_name):
+    text = ""
+    for element in list_name:
+        text += f"{element}\n" 
+    return text
+
+def prepare_requirements():
+    text = create_text_from_list(packages) 
+    write_in_file('requirements.txt', text)
+
+def prepare_gitignore():
+    ignore_files = [".gitignore", 
+                    f"{package_name}/__pycache__/*",
+                    "notebooks/.ipynb_checkpoints",
+                    "notebooks/.ipynb_checkpoints/*"
+                    ]
+        
+    text = create_text_from_list(ignore_files)
+    write_in_file('.gitignore', text)
+    
+
+def prepare_readme():
+
+    text = f"""# *NAME OF THE PROJECT/PROGRAM* 
+
+    ## *What is does*
+
+    PROGRAM is a python/c++/c/html/ipython notebook which makes/solve/consists
+    what is a goal
+    input
+    output 
+
+    ## General Prerequisites (for running and building)
+
+    * [Anaconda](https://www.anaconda.com/products/individual)
+    * [GitHub](https://github.com)
+    * library-n.version 5
+    * some other library
+
+    ## To build
+
+    NAME PROGRAM can be build on win/mac/linux
+    Instruction how to build
+
+    ## To run (for development or testing)
+
+    ```
+    # Clone this repository 
+    git clone http://github.com/rolandina
+    # Go into the directory
+    cd dirname
+    # python run.py
+    ```
+    ## Contributing
+
+    This project was built on another project/[framework](framework link)
+    If you have any questions, please reach me at 
+    [License](www.lisense.com)"""
+    write_in_file('README.md', text)
+
+
+def prepare_setup():
+    text = f"""
+from setuptools import setup
+
+setup(
+    name="{package_name}",
+    version='0.0.1',
+    packages=["{package_name}"],
+    install_requires={packages},
+    #scripts = ['scripts/some_script_name']
+    )
+"""
+    write_in_file('setup.py', text)
+
+def prepare_files():
+    prepare_gitignore()
+    prepare_readme()
+    prepare_requirements()
+    prepare_setup()
+
+def create_project_template():
+    create_structure()
+    prepare_files()
+
+
+create_project_template()
+
+
+
+
+
+
+
+
+
