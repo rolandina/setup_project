@@ -3,13 +3,14 @@
 
 import os
 import sys
-print(f"number of parameters: ",len(sys.argv))
-for i in range(len(sys.argv)):
-    print(f"param{i}:{sys.argv[i]}")
+import argparse
 
+parser = argparse.ArgumentParser(description='Create a template project with <project_name> given as parameter')
+parser.add_argument("project_name", help="name of the project", type = str)
+args = parser.parse_args()
 
 ### SET PARAMETERS HERE
-package_name = sys.argv[1]
+package_name = args.project_name
 packages = ["pandas", "numpy", "requests", "setuptools"]
 
 
@@ -122,7 +123,7 @@ def prepare_files():
 def create_project_template():
     create_structure()
     prepare_files()
-
+    print(f"Package template {package_name} successfully generated!")
 
 create_project_template()
 
